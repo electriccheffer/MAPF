@@ -18,6 +18,9 @@ target_link_libraries(test_trivial PRIVATE
     mapf_lib
 )
 target_link_libraries(test_trivial PRIVATE GTest::gtest_main mapf_lib pthread)
+target_link_libraries(test_dimension PRIVATE GTest::gtest_main mapf_lib pthread)
+
 
 include(GoogleTest)
 gtest_discover_tests(test_trivial)
+gtest_discover_tests(test_dimension)
