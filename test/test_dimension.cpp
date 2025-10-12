@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include "../include/Obstacles.hpp"
+#include "../include/errors/ObstacleErrors.hpp"
 
 TEST(TrivialTest,AlwaysPasses){
 
@@ -18,9 +19,9 @@ TEST(TestDimension,TestValidDimension){
 	EXPECT_EQ(dimensionList,dimensionResult);		
 }
 
-int main(int argc, char **argv){
+TEST(TestDimension,TestInvalidDimensionNegative){
 
-	::testing::InitGoogleTest(&argc,argv); 
-	return RUN_ALL_TESTS(); 
-
+	float height = -.25; 
+	float width = -.25; 
+	EXPECT_THROW({ObstacleDimension2D dimension(height,width);},ObstacleDimensionError);
 }

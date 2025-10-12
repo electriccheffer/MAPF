@@ -12,11 +12,7 @@ set(GTEST_ROOT /usr/src/gtest)
 find_package(GTest REQUIRED)
 add_executable(test_trivial test/test_trivial.cpp)
 add_executable(test_dimension test/test_dimension.cpp)
-target_link_libraries(test_trivial PRIVATE 
-    /usr/src/gtest/lib/libgtest.a 
-    /usr/src/gtest/lib/libgtest_main.a 
-    mapf_lib
-)
+
 target_link_libraries(test_trivial PRIVATE GTest::gtest_main mapf_lib pthread)
 target_link_libraries(test_dimension PRIVATE GTest::gtest_main mapf_lib pthread)
 
