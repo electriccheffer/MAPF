@@ -1,0 +1,9 @@
+build/
+install/
+log/
+
+*.swp
+*.bak
+*.tmp
+.DS_STORE
+*.egg-info
