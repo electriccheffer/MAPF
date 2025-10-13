@@ -33,10 +33,23 @@ ObstacleDimension3D::ObstacleDimension3D(float height, float width, float depth)
 ObstaclePosition::ObstaclePosition(const std::vector<float>& positionCoordinates)
 					:positionCoordinates(positionCoordinates){}
 
-std::vector<float>& ObstaclePosition::getPosition(){
+const std::vector<float>& ObstaclePosition::getPosition()const{
 
 	return this->positionCoordinates; 
 } 
+
+bool ObstaclePosition::operator==(const ObstaclePosition& otherPosition)const{
+	
+	std::vector<float> otherPositionVector = otherPosition.getPosition(); 
+	unsigned int otherPositionVectorSize = otherPositionVector.size(); 
+
+	for(unsigned int index = 0 ; index < otherPositionVectorSize ; index++ ){
+		if(otherPositionVector[index] != this->positionCoordinates[index]){
+			return false; 
+		}
+	}
+	return true; 
+}
 
 ObstaclePosition2D::ObstaclePosition2D(float xCoordinate, float yCoordinate):
 					ObstaclePosition({xCoordinate,yCoordinate}){}

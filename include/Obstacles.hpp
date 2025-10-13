@@ -33,7 +33,8 @@ class ObstaclePosition{
 
 	public:
 		ObstaclePosition(const std::vector<float>& positionCoordinates);
-		std::vector<float>& getPosition(); 
+		const std::vector<float>& getPosition()const;
+		bool operator==(const ObstaclePosition& otherPosition)const; 
 	protected: 
 		std::vector<float> positionCoordinates; 
 }; 

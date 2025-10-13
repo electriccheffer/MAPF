@@ -13,8 +13,18 @@ TEST(PositionTest,NormalCase){
 
 	float xCoordinate = 1.0;
 	float yCoordinate = 2.3; 
-	std::vector<float,float> expectedPositionVector = {xCoordinate,yCoordinate}; 
+	std::vector<float> expectedPositionVector = {xCoordinate,yCoordinate}; 
 	ObstaclePosition2D position(xCoordinate,yCoordinate); 
-	std::vector<float,float> resultPositionVector = position.getPosition(); 
+	std::vector<float> resultPositionVector = position.getPosition(); 
 	EXPECT_EQ(expectedPositionVector,resultPositionVector); 
+}
+
+TEST(PositionTest,EqualityTestTrue){
+	
+	float xCoordinate = 1.0;
+	float yCoordinate = 2.3; 
+	std::vector<float> expectedPositionVector = {xCoordinate,yCoordinate}; 
+	ObstaclePosition2D position(xCoordinate,yCoordinate);
+	ObstaclePosition2D otherPosition(xCoordinate,yCoordinate); 
+	EXPECT_EQ(position,otherPosition); 
 }
