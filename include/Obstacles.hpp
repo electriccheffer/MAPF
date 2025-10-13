@@ -29,4 +29,26 @@ class ObstacleDimension3D : public ObstacleDimension{
 
 };
 
+class ObstaclePosition{
+
+	public:
+		ObstaclePosition(const std::vector<float>& positionCoordinates);
+		std::vector<float>& getPosition(); 
+	protected: 
+		std::vector<float> positionCoordinates; 
+}; 
+
+class ObstaclePosition2D: public ObstaclePosition{
+	
+	public: 
+		ObstaclePosition2D(float xPosition,float yPosition);
+	protected: 
+}; 
+
+class ObstaclePosition3D: public ObstaclePosition{
+	
+	public: 
+		ObstaclePosition3D(float xPosition,float yPosition,float zPosition);
+	protected: 
+}; 
 #endif

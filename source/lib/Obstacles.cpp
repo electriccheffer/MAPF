@@ -28,3 +28,19 @@ ObstacleDimension3D::ObstacleDimension3D(float height, float width, float depth)
 	}
 
 }
+
+
+ObstaclePosition::ObstaclePosition(const std::vector<float>& positionCoordinates)
+					:positionCoordinates(positionCoordinates){}
+
+std::vector<float>& ObstaclePosition::getPosition(){
+
+	return this->positionCoordinates; 
+} 
+
+ObstaclePosition2D::ObstaclePosition2D(float xCoordinate, float yCoordinate):
+					ObstaclePosition({xCoordinate,yCoordinate}){}
+
+ObstaclePosition3D::ObstaclePosition3D(float xPosition, float yPosition,float zPosition):
+					ObstaclePosition({xPosition,yPosition,zPosition}){}
+
