@@ -53,3 +53,13 @@ TEST(PositionTest,NonEqualityTestNotEqual){
 	ObstaclePosition2D otherPosition(otherXCoordinate,otherYCoordinate); 
 	EXPECT_NE(position,otherPosition);
 }
+
+TEST(PositionTest,NonEqualityTestEqual){	
+	
+	float xCoordinate = 1.0;
+	float yCoordinate = 2.3; 
+	std::vector<float> expectedPositionVector = {xCoordinate,yCoordinate}; 
+	ObstaclePosition2D position(xCoordinate,yCoordinate);
+	ObstaclePosition2D otherPosition(xCoordinate,yCoordinate); 
+	EXPECT_FALSE((position!=otherPosition));
+}
