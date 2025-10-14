@@ -51,6 +51,11 @@ bool ObstaclePosition::operator==(const ObstaclePosition& otherPosition)const{
 	return true; 
 }
 
+bool ObstaclePosition::operator!=(const ObstaclePosition& otherPosition)const{
+
+	return !(*this == otherPosition); 
+}
+
 ObstaclePosition2D::ObstaclePosition2D(float xCoordinate, float yCoordinate):
 					ObstaclePosition({xCoordinate,yCoordinate}){}
 
