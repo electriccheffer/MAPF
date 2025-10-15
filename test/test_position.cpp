@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <vector>
+#include <ostream>
 #include "../include/Obstacles.hpp"
 #include "../include/errors/ObstacleErrors.hpp"
 
@@ -64,4 +65,13 @@ TEST(PositionTest,NonEqualityTestEqual){
 	EXPECT_FALSE((position!=otherPosition));
 }
 
+
+TEST(PositionTest,TestPrinting){
+
+	float xCoordinate = 1.0;
+	float yCoordinate = 2.3; 
+	std::vector<float> expectedPositionVector = {xCoordinate,yCoordinate}; 
+	ObstaclePosition2D position(xCoordinate,yCoordinate);
+	std::cout << position << std::endl;  	
+}
 

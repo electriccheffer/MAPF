@@ -1,12 +1,14 @@
 #ifndef OBSTACLES_HPP
 #define OBSTACLES_HPP
 #include <vector>
+#include <iostream>
 
 class ObstacleDimension{
 
 	public:
 		ObstacleDimension(const std::vector<float>& dimensions); 
 		std::vector<float>& getDimension(); 
+
 	protected: 
 		std::vector<float> dimensions; 
 	
@@ -34,6 +36,7 @@ class ObstaclePosition{
 	public:
 		ObstaclePosition(const std::vector<float>& positionCoordinates);
 		const std::vector<float>& getPosition()const;
+		void print(std::ostream& os)const; 
 		bool operator==(const ObstaclePosition& otherPosition)const; 
 		bool operator!=(const ObstaclePosition& otherPosition)const; 
 	protected: 
@@ -44,7 +47,9 @@ class ObstaclePosition2D: public ObstaclePosition{
 	
 	public: 
 		ObstaclePosition2D(float xPosition,float yPosition);
+		
 		bool operator==(const ObstaclePosition2D& otherPosition)const; 
+		
 		bool operator!=(const ObstaclePosition2D& otherPosition)const; 
 
 	protected: 
@@ -54,8 +59,11 @@ class ObstaclePosition3D: public ObstaclePosition{
 	
 	public: 
 		ObstaclePosition3D(float xPosition,float yPosition,float zPosition);
+		
 		bool operator==(const ObstaclePosition3D& otherPosition)const; 
 		bool operator!=(const ObstaclePosition3D& otherPosition)const; 
 	protected: 
-}; 
+};
+std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position);
+std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position);
 #endif

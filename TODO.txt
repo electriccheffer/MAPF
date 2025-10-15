@@ -1,4 +1,3 @@
--Point Object
--Implement == and << operators
+-Implement << operators
 -Obstacle Object
 -Obstacle Discretizer

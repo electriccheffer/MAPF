@@ -38,6 +38,22 @@ const std::vector<float>& ObstaclePosition::getPosition()const{
 	return this->positionCoordinates; 
 } 
 
+void ObstaclePosition::print(std::ostream& os)const{
+	unsigned int positionDimension = this->positionCoordinates.size();
+	os << "Obstacle Position: ("; 
+	for(unsigned int index = 0 ; index < positionDimension;index++ ){
+		
+		if(index == positionDimension-1){
+			os << this->positionCoordinates[index];
+			os << ")";  
+			return; 
+		}
+		os << this->positionCoordinates[index] << ", "; 
+	}	
+
+}
+
+
 bool ObstaclePosition::operator==(const ObstaclePosition& otherPosition)const{
 	
 	std::vector<float> otherPositionVector = otherPosition.getPosition(); 
@@ -58,7 +74,11 @@ bool ObstaclePosition::operator!=(const ObstaclePosition& otherPosition)const{
 
 ObstaclePosition2D::ObstaclePosition2D(float xCoordinate, float yCoordinate):
 					ObstaclePosition({xCoordinate,yCoordinate}){}
+std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position){
+	position.print(os);
+	return os; 
 
+}
 bool ObstaclePosition2D::operator==(const ObstaclePosition2D& otherPosition)const{
 	
 	return ObstaclePosition::operator==(otherPosition);  
@@ -73,6 +93,10 @@ bool ObstaclePosition2D::operator!=(const ObstaclePosition2D& otherPosition)cons
 ObstaclePosition3D::ObstaclePosition3D(float xPosition, float yPosition,float zPosition):
 					ObstaclePosition({xPosition,yPosition,zPosition}){}
 
+std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position){
+	position.print(os);
+	return os; 
+}
 bool ObstaclePosition3D::operator==(const ObstaclePosition3D& otherPosition)const{
 	return ObstaclePosition::operator==(otherPosition);	
 }
