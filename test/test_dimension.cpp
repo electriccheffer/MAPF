@@ -41,3 +41,12 @@ TEST(TestDimension,TestPrint){
 	ObstacleDimension2D dimension(height,width);
 	std::cout << dimension << std::endl; 
 }
+
+TEST(TestDimension,TestEqualityTrue){
+
+	float height = .25; 
+	float width = .25; 	
+	ObstacleDimension2D dimension(height,width);
+	ObstacleDimension2D otherDimension(height,width); 
+	EXPECT_EQ(dimension,otherDimension);
+}

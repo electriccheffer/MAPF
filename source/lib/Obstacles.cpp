@@ -3,11 +3,25 @@
 
 ObstacleDimension::ObstacleDimension(const std::vector<float>& dimensions):dimensions(dimensions){}
 
-std::vector<float>& ObstacleDimension::getDimension(){
+const std::vector<float>& ObstacleDimension::getDimension()const{
 
 	return this->dimensions; 
 }
 
+bool ObstacleDimension::operator==(const ObstacleDimension& otherDimension)const{
+
+	unsigned int dimension = this->dimensions.size(); 
+	std::vector<float> otherDimensionVector = otherDimension.getDimension(); 
+	for(int index = 0 ; index < dimension ; index++){
+	
+		if(this->dimensions[index] != otherDimensionVector[index]){
+		
+			return false; 
+		}
+	
+	}
+	return true;	
+}
 
 void ObstacleDimension::print(std::ostream& os)const{
 	
