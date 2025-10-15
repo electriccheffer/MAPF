@@ -10,7 +10,7 @@ class ObstacleDimension{
 		const std::vector<float>& getDimension()const; 
 		void print(std::ostream& os)const; 
 		bool operator==(const ObstacleDimension& otherDimension)const;
-
+		bool operator!=(const ObstacleDimension& otherDimension)const;
 	protected: 
 		std::vector<float> dimensions; 
 	

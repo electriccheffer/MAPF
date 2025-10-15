@@ -23,6 +23,12 @@ bool ObstacleDimension::operator==(const ObstacleDimension& otherDimension)const
 	return true;	
 }
 
+bool ObstacleDimension::operator!=(const ObstacleDimension& otherDimension)const{
+	
+	return !(*this == otherDimension);
+
+}
+
 void ObstacleDimension::print(std::ostream& os)const{
 	
 	unsigned int dimension = this->dimensions.size(); 
