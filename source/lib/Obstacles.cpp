@@ -59,6 +59,25 @@ bool ObstaclePosition::operator!=(const ObstaclePosition& otherPosition)const{
 ObstaclePosition2D::ObstaclePosition2D(float xCoordinate, float yCoordinate):
 					ObstaclePosition({xCoordinate,yCoordinate}){}
 
+bool ObstaclePosition2D::operator==(const ObstaclePosition2D& otherPosition)const{
+	
+	return ObstaclePosition::operator==(otherPosition);  
+}
+
+bool ObstaclePosition2D::operator!=(const ObstaclePosition2D& otherPosition)const{
+
+	return ObstaclePosition::operator!=(otherPosition); 
+}
+
+
 ObstaclePosition3D::ObstaclePosition3D(float xPosition, float yPosition,float zPosition):
 					ObstaclePosition({xPosition,yPosition,zPosition}){}
 
+bool ObstaclePosition3D::operator==(const ObstaclePosition3D& otherPosition)const{
+	return ObstaclePosition::operator==(otherPosition);	
+}
+
+bool ObstaclePosition3D::operator!=(const ObstaclePosition3D& otherPosition)const{
+
+	return ObstaclePosition::operator!=(otherPosition); 
+}

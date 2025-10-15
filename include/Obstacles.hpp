@@ -44,6 +44,9 @@ class ObstaclePosition2D: public ObstaclePosition{
 	
 	public: 
 		ObstaclePosition2D(float xPosition,float yPosition);
+		bool operator==(const ObstaclePosition2D& otherPosition)const; 
+		bool operator!=(const ObstaclePosition2D& otherPosition)const; 
+
 	protected: 
 }; 
 
@@ -51,6 +54,8 @@ class ObstaclePosition3D: public ObstaclePosition{
 	
 	public: 
 		ObstaclePosition3D(float xPosition,float yPosition,float zPosition);
+		bool operator==(const ObstaclePosition3D& otherPosition)const; 
+		bool operator!=(const ObstaclePosition3D& otherPosition)const; 
 	protected: 
 }; 
 #endif

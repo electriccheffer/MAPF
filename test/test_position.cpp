@@ -63,3 +63,5 @@ TEST(PositionTest,NonEqualityTestEqual){
 	ObstaclePosition2D otherPosition(xCoordinate,yCoordinate); 
 	EXPECT_FALSE((position!=otherPosition));
 }
+
+
