@@ -8,6 +8,24 @@ std::vector<float>& ObstacleDimension::getDimension(){
 	return this->dimensions; 
 }
 
+
+void ObstacleDimension::print(std::ostream& os)const{
+	
+	unsigned int dimension = this->dimensions.size(); 
+
+	os << "Obstacle Dimensions: ("; 
+	for(unsigned int index = 0;index < dimension;index++){
+		
+		if(index == dimension-1){
+			os << this->dimensions[index];
+			os << ")";  
+			return; 
+		}
+		os << this->dimensions[index] << ", "; 
+	}	
+
+}
+
 ObstacleDimension2D::ObstacleDimension2D(float height, float width):
 					ObstacleDimension({height,width}){
 
@@ -16,6 +34,16 @@ ObstacleDimension2D::ObstacleDimension2D(float height, float width):
 		throw ObstacleDimensionError("dimensions may not be zero or negative");
 	
 	}	
+}
+
+std::ostream& operator<<(std::ostream& os,const ObstacleDimension2D& dimension){
+	dimension.print(os);
+	return os; 
+}
+
+std::ostream& operator<<(std::ostream& os,const ObstacleDimension3D& dimension){
+	dimension.print(os);
+	return os; 
 }
 
 ObstacleDimension3D::ObstacleDimension3D(float height, float width, float depth):
@@ -74,11 +102,12 @@ bool ObstaclePosition::operator!=(const ObstaclePosition& otherPosition)const{
 
 ObstaclePosition2D::ObstaclePosition2D(float xCoordinate, float yCoordinate):
 					ObstaclePosition({xCoordinate,yCoordinate}){}
+
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position){
 	position.print(os);
 	return os; 
-
 }
+
 bool ObstaclePosition2D::operator==(const ObstaclePosition2D& otherPosition)const{
 	
 	return ObstaclePosition::operator==(otherPosition);  
@@ -89,7 +118,6 @@ bool ObstaclePosition2D::operator!=(const ObstaclePosition2D& otherPosition)cons
 	return ObstaclePosition::operator!=(otherPosition); 
 }
 
-
 ObstaclePosition3D::ObstaclePosition3D(float xPosition, float yPosition,float zPosition):
 					ObstaclePosition({xPosition,yPosition,zPosition}){}
 
@@ -97,6 +125,7 @@ std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position){
 	position.print(os);
 	return os; 
 }
+
 bool ObstaclePosition3D::operator==(const ObstaclePosition3D& otherPosition)const{
 	return ObstaclePosition::operator==(otherPosition);	
 }

@@ -2,6 +2,7 @@
 #include <vector>
 #include "../include/Obstacles.hpp"
 #include "../include/errors/ObstacleErrors.hpp"
+#include <iostream>
 
 TEST(TrivialTest,AlwaysPasses){
 
@@ -31,4 +32,12 @@ TEST(TestDimension,TestInvalidDimensionZero){
 	float height = 0.00; 
 	float width = .25; 
 	EXPECT_THROW({ObstacleDimension2D dimension(height,width);},ObstacleDimensionError);
+}
+
+TEST(TestDimension,TestPrint){
+
+	float height = .25; 
+	float width = .25; 	
+	ObstacleDimension2D dimension(height,width);
+	std::cout << dimension << std::endl; 
 }

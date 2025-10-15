@@ -8,6 +8,7 @@ class ObstacleDimension{
 	public:
 		ObstacleDimension(const std::vector<float>& dimensions); 
 		std::vector<float>& getDimension(); 
+		void print(std::ostream& os)const; 
 
 	protected: 
 		std::vector<float> dimensions; 
@@ -47,11 +48,8 @@ class ObstaclePosition2D: public ObstaclePosition{
 	
 	public: 
 		ObstaclePosition2D(float xPosition,float yPosition);
-		
 		bool operator==(const ObstaclePosition2D& otherPosition)const; 
-		
 		bool operator!=(const ObstaclePosition2D& otherPosition)const; 
-
 	protected: 
 }; 
 
@@ -59,11 +57,12 @@ class ObstaclePosition3D: public ObstaclePosition{
 	
 	public: 
 		ObstaclePosition3D(float xPosition,float yPosition,float zPosition);
-		
 		bool operator==(const ObstaclePosition3D& otherPosition)const; 
 		bool operator!=(const ObstaclePosition3D& otherPosition)const; 
 	protected: 
 };
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position);
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position);
+std::ostream& operator<<(std::ostream& os,const ObstacleDimension2D& dimension);
+std::ostream& operator<<(std::ostream& os,const ObstacleDimension3D& dimension);
 #endif
