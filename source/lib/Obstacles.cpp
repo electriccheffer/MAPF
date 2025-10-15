@@ -50,15 +50,18 @@ ObstacleDimension2D::ObstacleDimension2D(float height, float width):
 	}	
 }
 
+bool ObstacleDimension2D::operator==(const ObstacleDimension2D& otherDimension)const{
+
+	return ObstacleDimension::operator==(otherDimension); 
+
+}
+
 std::ostream& operator<<(std::ostream& os,const ObstacleDimension2D& dimension){
 	dimension.print(os);
 	return os; 
 }
 
-std::ostream& operator<<(std::ostream& os,const ObstacleDimension3D& dimension){
-	dimension.print(os);
-	return os; 
-}
+
 
 ObstacleDimension3D::ObstacleDimension3D(float height, float width, float depth):
 					ObstacleDimension({height,width,depth}){
@@ -71,6 +74,16 @@ ObstacleDimension3D::ObstacleDimension3D(float height, float width, float depth)
 
 }
 
+bool ObstacleDimension3D::operator==(const ObstacleDimension3D& otherDimension)const{
+
+	return ObstacleDimension::operator==(otherDimension); 
+
+}
+
+std::ostream& operator<<(std::ostream& os,const ObstacleDimension3D& dimension){
+	dimension.print(os);
+	return os; 
+}
 
 ObstaclePosition::ObstaclePosition(const std::vector<float>& positionCoordinates)
 					:positionCoordinates(positionCoordinates){}

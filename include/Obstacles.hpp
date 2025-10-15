@@ -21,6 +21,7 @@ class ObstacleDimension2D : public ObstacleDimension{
 	
 	public: 
 		ObstacleDimension2D(float height,float width); 
+		bool operator==(const ObstacleDimension2D& otherDimension)const; 
 	protected: 
 
 }; 
@@ -29,6 +30,7 @@ class ObstacleDimension3D : public ObstacleDimension{
 	
 	public: 
 		ObstacleDimension3D(float height,float width,float depth); 
+		bool operator==(const ObstacleDimension3D& otherDimension)const;
 	protected: 
 
 };
