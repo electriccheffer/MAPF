@@ -177,3 +177,8 @@ bool ObstaclePosition3D::operator!=(const ObstaclePosition3D& otherPosition)cons
 
 	return ObstaclePosition::operator!=(otherPosition); 
 }
+
+
+
+
+Obstacle2D::Obstacle2D(ObstaclePosition2D& position,ObstacleDimension2D& dimension):Obstacle(position,dimension){}

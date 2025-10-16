@@ -66,8 +66,32 @@ class ObstaclePosition3D: public ObstaclePosition{
 		bool operator!=(const ObstaclePosition3D& otherPosition)const; 
 	protected: 
 };
+
+template<typename Derived, typename DimensionType>
+class Obstacle{
+	static_assert(std::is_base_of_v<ObstacleDimension,DimensionType>,""); 
+	public:
+		Obstacle(ObstaclePosition& postion,DimensionType& dimension)
+						:position(position),dimension(dimension){}
+		DimensionType& getDimension(){return this->dimension;}
+
+	protected: 
+		ObstaclePosition& position; 
+		DimensionType& dimension; 
+};
+
+class Obstacle2D : public Obstacle<Obstacle2D,ObstacleDimension2D>{
+
+	public:
+	 	Obstacle2D(ObstaclePosition2D& position,ObstacleDimension2D& dimension); 
+	protected:
+};
+
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position);
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position);
 std::ostream& operator<<(std::ostream& os,const ObstacleDimension2D& dimension);
 std::ostream& operator<<(std::ostream& os,const ObstacleDimension3D& dimension);
+
+
+
 #endif

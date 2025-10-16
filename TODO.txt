@@ -1,3 +1,2 @@
--Implement << operators for Dimension
 -Obstacle Object
 -Obstacle Discretizer
