@@ -67,23 +67,25 @@ class ObstaclePosition3D: public ObstaclePosition{
 	protected: 
 };
 
-template<typename Derived, typename DimensionType>
+template<typename Derived, typename DimensionType, typename PositionType>
 class Obstacle{
 	static_assert(std::is_base_of_v<ObstacleDimension,DimensionType>,""); 
-	public:
-		Obstacle(ObstaclePosition& postion,DimensionType& dimension)
-						:position(position),dimension(dimension){}
-		DimensionType& getDimension(){return this->dimension;}
+	static_assert(std::is_base_of_v<ObstaclePosition, PositionType>, "");
 
+	public:
+		Obstacle(const PositionType& position,const DimensionType& dimension)
+						:position(position),dimension(dimension){}
+		const DimensionType& getDimension()const{return this->dimension;}
+		const PositionType& getPosition()const{return this->position;}
 	protected: 
-		ObstaclePosition& position; 
-		DimensionType& dimension; 
+		PositionType position; 
+		DimensionType dimension; 
 };
 
-class Obstacle2D : public Obstacle<Obstacle2D,ObstacleDimension2D>{
+class Obstacle2D : public Obstacle<Obstacle2D,ObstacleDimension2D,ObstaclePosition2D>{
 
 	public:
-	 	Obstacle2D(ObstaclePosition2D& position,ObstacleDimension2D& dimension); 
+	 	Obstacle2D(const ObstaclePosition2D& position,const ObstacleDimension2D& dimension); 
 	protected:
 };
 
