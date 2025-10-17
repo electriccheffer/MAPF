@@ -77,6 +77,18 @@ class Obstacle{
 						:position(position),dimension(dimension){}
 		const DimensionType& getDimension()const{return this->dimension;}
 		const PositionType& getPosition()const{return this->position;}
+		bool operator==(const Obstacle& otherObstacle)const{
+			if(this->dimension != otherObstacle.getDimension()){
+			
+				return false; 
+			}
+			if(this->position != otherObstacle.getPosition()){
+			
+				return false;
+			}
+			return true;
+		}
+
 	protected: 
 		PositionType position; 
 		DimensionType dimension; 

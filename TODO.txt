@@ -1,2 +1,3 @@
 -Obstacle Object
+- implement == and << for obstacle
 -Obstacle Discretizer
