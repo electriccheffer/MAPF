@@ -106,6 +106,17 @@ class Obstacle2D : public Obstacle<Obstacle2D,ObstacleDimension2D,ObstaclePositi
 
 };
 
+class Obstacle3D : public Obstacle<Obstacle3D,ObstacleDimension3D,ObstaclePosition3D>{
+
+	public:
+	 	Obstacle3D(const ObstaclePosition3D& position,const ObstacleDimension3D& dimension); 
+		bool operator==(const Obstacle3D& otherPostion)const;
+		bool operator!=(const Obstacle3D& otherPostion)const;
+	protected:
+
+};
+
+
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position);
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position);
 std::ostream& operator<<(std::ostream& os,const ObstacleDimension2D& dimension);

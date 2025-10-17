@@ -190,3 +190,16 @@ bool Obstacle2D::operator!=(const Obstacle2D& otherObstacle)const{
 	
 	return Obstacle::operator!=(otherObstacle);
 }
+
+
+Obstacle3D::Obstacle3D(const ObstaclePosition3D& position,const ObstacleDimension3D& dimension):Obstacle(position,dimension){}
+
+bool Obstacle3D::operator==(const Obstacle3D& otherObstacle)const{
+	
+	return Obstacle::operator==(otherObstacle);
+}
+
+bool Obstacle3D::operator!=(const Obstacle3D& otherObstacle)const{
+	
+	return Obstacle::operator!=(otherObstacle);
+}
