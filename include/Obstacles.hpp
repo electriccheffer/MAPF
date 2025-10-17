@@ -100,7 +100,10 @@ class Obstacle2D : public Obstacle<Obstacle2D,ObstacleDimension2D,ObstaclePositi
 
 	public:
 	 	Obstacle2D(const ObstaclePosition2D& position,const ObstacleDimension2D& dimension); 
+		bool operator==(const Obstacle2D& otherPostion)const;
+		bool operator!=(const Obstacle2D& otherPostion)const;
 	protected:
+
 };
 
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position);

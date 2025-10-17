@@ -180,3 +180,13 @@ bool ObstaclePosition3D::operator!=(const ObstaclePosition3D& otherPosition)cons
 
 
 Obstacle2D::Obstacle2D(const ObstaclePosition2D& position,const ObstacleDimension2D& dimension):Obstacle(position,dimension){}
+
+bool Obstacle2D::operator==(const Obstacle2D& otherObstacle)const{
+	
+	return Obstacle::operator==(otherObstacle);
+}
+
+bool Obstacle2D::operator!=(const Obstacle2D& otherObstacle)const{
+	
+	return Obstacle::operator!=(otherObstacle);
+}

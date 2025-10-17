@@ -98,3 +98,5 @@ TEST(ObstacleTest,TestNonEqualityTrue){
 	Obstacle2D otherObstacle(position,dimension); 
 	EXPECT_FALSE((obstacle!=otherObstacle)); 
 }
+
+
