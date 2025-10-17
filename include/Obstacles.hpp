@@ -88,7 +88,9 @@ class Obstacle{
 			}
 			return true;
 		}
-
+		bool operator!=(const Obstacle& otherObstacle)const{
+			return !(*this == otherObstacle); 	
+		}
 	protected: 
 		PositionType position; 
 		DimensionType dimension; 

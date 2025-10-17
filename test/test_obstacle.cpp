@@ -69,3 +69,18 @@ TEST(ObstacleTest,TestEqualityFalse){
 	Obstacle2D otherObstacle(position,otherDimension); 
 	EXPECT_FALSE((obstacle==otherObstacle)); 
 }
+
+TEST(ObstacleTest,TestNonEqualityFalse){
+
+	float xPosition = 1.0;
+	float yPosition = 2.0; 
+	float width = .25; 
+	float height = .25; 
+	float otherHeight = .5; 
+	ObstacleDimension2D dimension(width,height);
+	ObstaclePosition2D position(xPosition,yPosition);
+	Obstacle2D obstacle(position,dimension); 
+	ObstacleDimension2D otherDimension (otherHeight,width); 
+	Obstacle2D otherObstacle(position,otherDimension); 
+	EXPECT_NE(obstacle,otherObstacle); 
+}
