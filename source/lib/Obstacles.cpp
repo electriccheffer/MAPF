@@ -191,6 +191,11 @@ bool Obstacle2D::operator!=(const Obstacle2D& otherObstacle)const{
 	return Obstacle::operator!=(otherObstacle);
 }
 
+std::ostream& operator<<(std::ostream& os,const Obstacle2D& obstacle){
+	
+	obstacle.print(os);
+	return os; 
+}
 
 Obstacle3D::Obstacle3D(const ObstaclePosition3D& position,const ObstacleDimension3D& dimension):Obstacle(position,dimension){}
 
@@ -202,4 +207,11 @@ bool Obstacle3D::operator==(const Obstacle3D& otherObstacle)const{
 bool Obstacle3D::operator!=(const Obstacle3D& otherObstacle)const{
 	
 	return Obstacle::operator!=(otherObstacle);
+}
+
+
+std::ostream& operator<<(std::ostream& os,const Obstacle3D& obstacle){
+
+	obstacle.print(os);
+	return os; 
 }

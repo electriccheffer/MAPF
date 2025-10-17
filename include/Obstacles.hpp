@@ -77,6 +77,14 @@ class Obstacle{
 						:position(position),dimension(dimension){}
 		const DimensionType& getDimension()const{return this->dimension;}
 		const PositionType& getPosition()const{return this->position;}
+		void print(std::ostream& os)const{
+		
+			os << "Obstacle Data:"; 
+			os << this->position;
+		       	os << ";";	
+			os << this->dimension;	
+		
+		}
 		bool operator==(const Obstacle& otherObstacle)const{
 			if(this->dimension != otherObstacle.getDimension()){
 			
@@ -121,7 +129,6 @@ std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position);
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position);
 std::ostream& operator<<(std::ostream& os,const ObstacleDimension2D& dimension);
 std::ostream& operator<<(std::ostream& os,const ObstacleDimension3D& dimension);
-
-
-
+std::ostream& operator<<(std::ostream& os,const Obstacle2D& obstacle);
+std::ostream& operator<<(std::ostream& os,const Obstacle3D& obstacle);
 #endif

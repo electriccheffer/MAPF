@@ -99,4 +99,15 @@ TEST(ObstacleTest,TestNonEqualityTrue){
 	EXPECT_FALSE((obstacle!=otherObstacle)); 
 }
 
+TEST(ObstacleTest,PrintTest){
+	
+	float xPosition = 1.0;
+	float yPosition = 2.0; 
+	float width = .25; 
+	float height = .25; 
 
+	ObstacleDimension2D dimension(width,height);
+	ObstaclePosition2D position(xPosition,yPosition);
+	Obstacle2D obstacle(position,dimension); 
+	std::cout << obstacle << std::endl; 
+}
