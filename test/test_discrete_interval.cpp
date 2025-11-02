@@ -57,3 +57,18 @@ TEST(TestDiscreteInterval,TestEqualityFalseSpaceMismatch){
 	EXPECT_FALSE(interval==otherInterval);
 }
 
+TEST(TestDiscreteInterval,TestEqualityFalseDimensionMismatch){
+
+	float space = .1; 
+	float height = .1; 
+	float width = .1;
+	float otherHeight = .2; 
+	ObstacleDimension2D dimension(height,width);
+	ObstacleDimension2D otherDimension(otherHeight,width);
+	DiscreteInterval2D interval(space,dimension);
+	DiscreteInterval2D otherInterval(space,otherDimension); 
+	EXPECT_FALSE(interval==otherInterval);
+}
+
+
+
