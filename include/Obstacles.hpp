@@ -131,9 +131,19 @@ class DiscreteInterval{
 	public:
 	       	DiscreteInterval(float space,T& dimension)
 							:space(space),dimension(dimension){} 	
-		float getSpace(){return this->space;}
-		T& getDimension(){return this->dimension;}
-
+		const float getSpace()const{return this->space;}
+		const T& getDimension()const{return this->dimension;}
+		bool operator==(const DiscreteInterval& otherInterval)const{
+			if(this->space != otherInterval.getSpace()){
+			
+				return false; 
+			}
+			if(this->dimension != otherInterval.getDimension()){
+			
+				return false; 
+			}
+			return true; 
+		}
 	protected:
 		float space; 
 		T dimension;
@@ -144,14 +154,14 @@ class DiscreteInterval2D:public DiscreteInterval<ObstacleDimension2D>{
 
 	public: 
 		DiscreteInterval2D(float space, ObstacleDimension2D& dimension); 
-
+		bool operator==(const DiscreteInterval2D& otherInterval)const; 
 }; 
 
 class DiscreteInterval3D:public DiscreteInterval<ObstacleDimension3D>{
 
 	public: 
 		DiscreteInterval3D(float space, ObstacleDimension3D& dimension); 
-
+		bool operator==(const DiscreteInterval3D& otherInterval)const;
 }; 
 
 class ObstacleDiscretizer{

@@ -219,7 +219,15 @@ std::ostream& operator<<(std::ostream& os,const Obstacle3D& obstacle){
 DiscreteInterval2D::DiscreteInterval2D(float space, ObstacleDimension2D& dimension)
 					:DiscreteInterval(space,dimension){}
 
+bool DiscreteInterval2D::operator==(const DiscreteInterval2D& otherInterval)const{
+
+	return DiscreteInterval::operator==(otherInterval); 
+}
+
 DiscreteInterval3D::DiscreteInterval3D(float space, ObstacleDimension3D& dimension)
 					:DiscreteInterval(space,dimension){}
 
+bool DiscreteInterval3D::operator==(const DiscreteInterval3D& otherInterval)const{
 
+	return DiscreteInterval::operator==(otherInterval); 
+}
