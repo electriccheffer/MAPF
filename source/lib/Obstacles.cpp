@@ -217,7 +217,7 @@ std::ostream& operator<<(std::ostream& os,const Obstacle3D& obstacle){
 }
 
 
-DiscreteInterval::DiscreteInterval(float space){
+DiscreteInterval::DiscreteInterval(float space,ObstacleDimension& dimension):dimension(dimension){
 	
 	this->space = space; 
 }

@@ -17,6 +17,7 @@ class ObstacleDimension{
 
 }; 
 
+
 class ObstacleDimension2D : public ObstacleDimension{
 	
 	public: 
@@ -127,10 +128,11 @@ class Obstacle3D : public Obstacle<Obstacle3D,ObstacleDimension3D,ObstaclePositi
 class DiscreteInterval{
 
 	public:
-	       	DiscreteInterval(float space); 	
+	       	DiscreteInterval(float space,ObstacleDimension& dimension); 	
 		float getSpace(); 
 	protected:
 		float space; 
+		ObstacleDimension dimension;
 }; 
 
 class ObstacleDiscretizer{
