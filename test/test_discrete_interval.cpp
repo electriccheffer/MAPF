@@ -54,7 +54,7 @@ TEST(TestDiscreteInterval,TestEqualityFalseSpaceMismatch){
 	ObstacleDimension2D dimension(height,width);
 	DiscreteInterval2D interval(space,dimension);
 	DiscreteInterval2D otherInterval(otherSpace,dimension); 
-	EXPECT_FALSE(interval==otherInterval);
+	EXPECT_NE(interval,otherInterval);
 }
 
 TEST(TestDiscreteInterval,TestEqualityFalseDimensionMismatch){
@@ -67,8 +67,7 @@ TEST(TestDiscreteInterval,TestEqualityFalseDimensionMismatch){
 	ObstacleDimension2D otherDimension(otherHeight,width);
 	DiscreteInterval2D interval(space,dimension);
 	DiscreteInterval2D otherInterval(space,otherDimension); 
-	EXPECT_FALSE(interval==otherInterval);
+	EXPECT_NE(interval,otherInterval);
 }
-
 
 

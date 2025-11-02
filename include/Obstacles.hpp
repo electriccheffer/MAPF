@@ -144,6 +144,9 @@ class DiscreteInterval{
 			}
 			return true; 
 		}
+		bool operator!=(const DiscreteInterval& otherInterval)const{
+			return !(*this == otherInterval); 
+		}
 	protected:
 		float space; 
 		T dimension;
@@ -155,6 +158,7 @@ class DiscreteInterval2D:public DiscreteInterval<ObstacleDimension2D>{
 	public: 
 		DiscreteInterval2D(float space, ObstacleDimension2D& dimension); 
 		bool operator==(const DiscreteInterval2D& otherInterval)const; 
+		bool operator!=(const DiscreteInterval2D& otherInterval)const; 
 }; 
 
 class DiscreteInterval3D:public DiscreteInterval<ObstacleDimension3D>{
@@ -162,6 +166,7 @@ class DiscreteInterval3D:public DiscreteInterval<ObstacleDimension3D>{
 	public: 
 		DiscreteInterval3D(float space, ObstacleDimension3D& dimension); 
 		bool operator==(const DiscreteInterval3D& otherInterval)const;
+		bool operator!=(const DiscreteInterval3D& otherInterval)const; 
 }; 
 
 class ObstacleDiscretizer{
