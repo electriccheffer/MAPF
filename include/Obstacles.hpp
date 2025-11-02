@@ -124,6 +124,20 @@ class Obstacle3D : public Obstacle<Obstacle3D,ObstacleDimension3D,ObstaclePositi
 
 };
 
+class DiscreteInterval{
+
+	public:
+	       	DiscreteInterval(float space); 	
+		float getSpace(); 
+	protected:
+		float space; 
+}; 
+
+class ObstacleDiscretizer{
+
+
+}; 
+
 
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position);
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position);

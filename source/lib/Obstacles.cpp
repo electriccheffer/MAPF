@@ -215,3 +215,12 @@ std::ostream& operator<<(std::ostream& os,const Obstacle3D& obstacle){
 	obstacle.print(os);
 	return os; 
 }
+
+
+DiscreteInterval::DiscreteInterval(float space){
+	
+	this->space = space; 
+}
+
+float DiscreteInterval::getSpace(){return this->space;}
+
