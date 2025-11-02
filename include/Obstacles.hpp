@@ -125,14 +125,33 @@ class Obstacle3D : public Obstacle<Obstacle3D,ObstacleDimension3D,ObstaclePositi
 
 };
 
+template<typename T>
 class DiscreteInterval{
 
 	public:
-	       	DiscreteInterval(float space,ObstacleDimension& dimension); 	
-		float getSpace(); 
+	       	DiscreteInterval(float space,T& dimension)
+							:space(space),dimension(dimension){} 	
+		float getSpace(){return this->space;}
+		T& getDimension(){return this->dimension;}
+
 	protected:
 		float space; 
-		ObstacleDimension dimension;
+		T dimension;
+}; 
+
+
+class DiscreteInterval2D:public DiscreteInterval<ObstacleDimension2D>{
+
+	public: 
+		DiscreteInterval2D(float space, ObstacleDimension2D& dimension); 
+
+}; 
+
+class DiscreteInterval3D:public DiscreteInterval<ObstacleDimension3D>{
+
+	public: 
+		DiscreteInterval3D(float space, ObstacleDimension3D& dimension); 
+
 }; 
 
 class ObstacleDiscretizer{

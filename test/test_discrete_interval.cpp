@@ -27,8 +27,11 @@ TEST(TestDiscreteInterval,GetDimension){
 	float height = .1; 
 	float width = .1; 
 	ObstacleDimension2D dimension(height,width);
-	ObstacleDimension2D dimensionResult(height,width);
-	DiscreteInterval interval(space,dimension);
-	EXPECT_EQ(dimension,dimensionResult);	
+	ObstacleDimension2D dimensionExpected(height,width);
+	DiscreteInterval2D interval(space,dimension);
+	ObstacleDimension2D dimensionResult = interval.getDimension(); 
+	EXPECT_EQ(dimensionExpected,dimensionResult);	
 
 }
+
+

@@ -216,11 +216,10 @@ std::ostream& operator<<(std::ostream& os,const Obstacle3D& obstacle){
 	return os; 
 }
 
+DiscreteInterval2D::DiscreteInterval2D(float space, ObstacleDimension2D& dimension)
+					:DiscreteInterval(space,dimension){}
 
-DiscreteInterval::DiscreteInterval(float space,ObstacleDimension& dimension):dimension(dimension){
-	
-	this->space = space; 
-}
+DiscreteInterval3D::DiscreteInterval3D(float space, ObstacleDimension3D& dimension)
+					:DiscreteInterval(space,dimension){}
 
-float DiscreteInterval::getSpace(){return this->space;}
 
