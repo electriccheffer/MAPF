@@ -255,3 +255,12 @@ std::ostream& operator<<(std::ostream& os, const DiscreteInterval3D& interval){
 }
 
 
+ObstacleDiscretizer2D::ObstacleDiscretizer2D(Obstacle2D& obstacle,
+					DiscreteInterval2D& interval)
+						:obstacle(obstacle),interval(interval){}
+
+Obstacle2D& ObstacleDiscretizer2D::getObstacle(){
+
+	return this->obstacle; 
+}
+					
