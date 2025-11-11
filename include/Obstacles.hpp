@@ -183,6 +183,7 @@ class ObstacleDiscretizer2D{
 	public: 
 		ObstacleDiscretizer2D(Obstacle2D& obstacle,DiscreteInterval2D& interval);
 		Obstacle2D& getObstacle(); 
+		DiscreteInterval2D& getInterval(); 
 	protected:
 		Obstacle2D& obstacle; 
 		DiscreteInterval2D& interval; 

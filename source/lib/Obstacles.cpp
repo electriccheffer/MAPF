@@ -263,4 +263,8 @@ Obstacle2D& ObstacleDiscretizer2D::getObstacle(){
 
 	return this->obstacle; 
 }
-					
+
+DiscreteInterval2D& ObstacleDiscretizer2D::getInterval(){
+
+	return this->interval;
+}
