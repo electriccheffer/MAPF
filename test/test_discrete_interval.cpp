@@ -71,3 +71,13 @@ TEST(TestDiscreteInterval,TestEqualityFalseDimensionMismatch){
 }
 
 
+TEST(TestDiscreteInterval,TestPrint2D){
+
+	float space = .1; 
+	float height = .1; 
+	float width = .1; 
+	ObstacleDimension2D dimension(height,width);
+	DiscreteInterval2D interval(space,dimension);
+	std::cout << interval << std::endl; 	
+
+}

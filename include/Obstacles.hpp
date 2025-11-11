@@ -147,6 +147,14 @@ class DiscreteInterval{
 		bool operator!=(const DiscreteInterval& otherInterval)const{
 			return !(*this == otherInterval); 
 		}
+		void print(std::ostream& os)const{
+		
+			os << "Interval Size:"; 
+			os << this->space;
+		       	os << ";";	
+			os << this->dimension;	
+		
+		}
 	protected:
 		float space; 
 		T dimension;
@@ -159,6 +167,7 @@ class DiscreteInterval2D:public DiscreteInterval<ObstacleDimension2D>{
 		DiscreteInterval2D(float space, ObstacleDimension2D& dimension); 
 		bool operator==(const DiscreteInterval2D& otherInterval)const; 
 		bool operator!=(const DiscreteInterval2D& otherInterval)const; 
+		
 }; 
 
 class DiscreteInterval3D:public DiscreteInterval<ObstacleDimension3D>{
@@ -181,4 +190,6 @@ std::ostream& operator<<(std::ostream& os,const ObstacleDimension2D& dimension);
 std::ostream& operator<<(std::ostream& os,const ObstacleDimension3D& dimension);
 std::ostream& operator<<(std::ostream& os,const Obstacle2D& obstacle);
 std::ostream& operator<<(std::ostream& os,const Obstacle3D& obstacle);
+std::ostream& operator<<(std::ostream& os, const DiscreteInterval2D& interval); 
+std::ostream& operator<<(std::ostream& os, const DiscreteInterval3D& interval);
 #endif

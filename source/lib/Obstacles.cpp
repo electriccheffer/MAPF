@@ -229,6 +229,12 @@ bool DiscreteInterval2D::operator!=(const DiscreteInterval2D& otherInterval)cons
 	return DiscreteInterval::operator!=(otherInterval); 
 }
 
+std::ostream& operator<<(std::ostream& os, const DiscreteInterval2D& interval){
+
+	interval.print(os); 
+	return os; 
+}
+
 DiscreteInterval3D::DiscreteInterval3D(float space, ObstacleDimension3D& dimension)
 					:DiscreteInterval(space,dimension){}
 
@@ -241,3 +247,11 @@ bool DiscreteInterval3D::operator!=(const DiscreteInterval3D& otherInterval)cons
 
 	return DiscreteInterval::operator!=(otherInterval); 
 }
+
+std::ostream& operator<<(std::ostream& os, const DiscreteInterval3D& interval){
+
+	interval.print(os); 
+	return os; 
+}
+
+
