@@ -75,3 +75,20 @@ TEST(PositionTest,TestPrinting){
 	std::cout << position << std::endl;  	
 }
 
+TEST(PositionTest,TestAddition){
+	
+	float xPosition = 0.1; 
+	float yPosition = 0.2;
+	ObstaclePosition2D position(xPosition,yPosition); 
+	
+	float height = .1; 
+	float width =.1; 
+	ObstacleDimension2D dimension (width,height); 
+
+	float xResult = .2; 
+	float yResult = .3; 
+	ObstaclePosition2D positionExpected(xResult,yResult); 
+	
+	ObstaclePosition2D positionResult = position + dimension; 
+	EXPECT_EQ(positionExpected,positionResult); 
+}

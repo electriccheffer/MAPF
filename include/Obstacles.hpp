@@ -37,41 +37,94 @@ class ObstacleDimension3D : public ObstacleDimension{
 	protected: 
 
 };
-
+template<typename SomePosition,typename SomeDimension>
 class ObstaclePosition{
 
 	public:
-		ObstaclePosition(const std::vector<float>& positionCoordinates);
-		const std::vector<float>& getPosition()const;
-		void print(std::ostream& os)const; 
-		bool operator==(const ObstaclePosition& otherPosition)const; 
-		bool operator!=(const ObstaclePosition& otherPosition)const; 
+		ObstaclePosition(const std::vector<float>& positionCoordinates)
+						:positionCoordinates(positionCoordinates){}
+
+	const std::vector<float>& getPosition()const{
+
+		return this->positionCoordinates; 
+	} 
+
+	void print(std::ostream& os)const{
+		unsigned int positionDimension = this->positionCoordinates.size();
+		os << "Obstacle Position: ("; 
+		for(unsigned int index = 0 ; index < positionDimension;index++ ){
+			
+			if(index == positionDimension-1){
+				os << this->positionCoordinates[index];
+				os << ")";  
+				return; 
+			}
+			os << this->positionCoordinates[index] << ", "; 
+		}	
+
+	}
+
+
+	bool operator==(const ObstaclePosition& otherPosition)const{
+		
+		std::vector<float> otherPositionVector = otherPosition.getPosition(); 
+		unsigned int otherPositionVectorSize = otherPositionVector.size(); 
+
+		for(unsigned int index = 0 ; index < otherPositionVectorSize ; index++ ){
+			if(otherPositionVector[index] != this->positionCoordinates[index]){
+				return false; 
+			}
+		}
+		return true; 
+	}
+
+	bool operator!=(const ObstaclePosition& otherPosition)const{
+
+		return !(*this == otherPosition); 
+	}
+
+	SomePosition operator+(const SomeDimension& dimension)const{
+	
+		std::vector<float> dimensionVectors = dimension.getDimension(); 
+		int dimensionLength = dimensionVectors.size(); 
+		std::vector<float> positionVectorResult; 
+		for(int index = 0 ; index < dimensionLength  ; index++){
+			
+			positionVectorResult.push_back(this->positionCoordinates[index] + 
+							dimensionVectors[index]); 
+		}	
+		SomePosition resultPosition(positionVectorResult);
+		return resultPosition; 
+	}
+
 	protected: 
 		std::vector<float> positionCoordinates; 
 }; 
 
-class ObstaclePosition2D: public ObstaclePosition{
+class ObstaclePosition2D: public ObstaclePosition<ObstaclePosition2D,ObstacleDimension2D>{
 	
-	public: 
+	public:
+		ObstaclePosition2D(const std::vector<float>& positions); 
 		ObstaclePosition2D(float xPosition,float yPosition);
 		bool operator==(const ObstaclePosition2D& otherPosition)const; 
 		bool operator!=(const ObstaclePosition2D& otherPosition)const; 
+		ObstaclePosition2D operator+(const ObstacleDimension2D& dimension)const;
 	protected: 
 }; 
 
-class ObstaclePosition3D: public ObstaclePosition{
+class ObstaclePosition3D: public ObstaclePosition<ObstaclePosition3D,ObstacleDimension3D>{
 	
 	public: 
+		ObstaclePosition3D(const std::vector<float>& positions); 
 		ObstaclePosition3D(float xPosition,float yPosition,float zPosition);
 		bool operator==(const ObstaclePosition3D& otherPosition)const; 
 		bool operator!=(const ObstaclePosition3D& otherPosition)const; 
+		ObstaclePosition3D operator+(const ObstacleDimension3D& dimension)const;
 	protected: 
 };
 
 template<typename Derived, typename DimensionType, typename PositionType>
 class Obstacle{
-	static_assert(std::is_base_of_v<ObstacleDimension,DimensionType>,""); 
-	static_assert(std::is_base_of_v<ObstaclePosition, PositionType>, "");
 
 	public:
 		Obstacle(const PositionType& position,const DimensionType& dimension)

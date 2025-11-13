@@ -101,46 +101,14 @@ std::ostream& operator<<(std::ostream& os,const ObstacleDimension3D& dimension){
 	return os; 
 }
 
-ObstaclePosition::ObstaclePosition(const std::vector<float>& positionCoordinates)
-					:positionCoordinates(positionCoordinates){}
-
-const std::vector<float>& ObstaclePosition::getPosition()const{
-
-	return this->positionCoordinates; 
-} 
-
-void ObstaclePosition::print(std::ostream& os)const{
-	unsigned int positionDimension = this->positionCoordinates.size();
-	os << "Obstacle Position: ("; 
-	for(unsigned int index = 0 ; index < positionDimension;index++ ){
-		
-		if(index == positionDimension-1){
-			os << this->positionCoordinates[index];
-			os << ")";  
-			return; 
-		}
-		os << this->positionCoordinates[index] << ", "; 
-	}	
-
-}
-
-
-bool ObstaclePosition::operator==(const ObstaclePosition& otherPosition)const{
+ObstaclePosition2D::ObstaclePosition2D(const std::vector<float>& positions)
+							:ObstaclePosition(positions){
+							
+	if(positions.size() != 2){
 	
-	std::vector<float> otherPositionVector = otherPosition.getPosition(); 
-	unsigned int otherPositionVectorSize = otherPositionVector.size(); 
-
-	for(unsigned int index = 0 ; index < otherPositionVectorSize ; index++ ){
-		if(otherPositionVector[index] != this->positionCoordinates[index]){
-			return false; 
-		}
-	}
-	return true; 
-}
-
-bool ObstaclePosition::operator!=(const ObstaclePosition& otherPosition)const{
-
-	return !(*this == otherPosition); 
+		throw new ObstaclePositionError("position 2D array must be of length 2"); 
+	}						
+								
 }
 
 ObstaclePosition2D::ObstaclePosition2D(float xCoordinate, float yCoordinate):
@@ -161,8 +129,24 @@ bool ObstaclePosition2D::operator!=(const ObstaclePosition2D& otherPosition)cons
 	return ObstaclePosition::operator!=(otherPosition); 
 }
 
+ObstaclePosition2D ObstaclePosition2D::operator+(const ObstacleDimension2D& dimension)const{
+
+	return ObstaclePosition::operator+(dimension); 
+
+}
+
 ObstaclePosition3D::ObstaclePosition3D(float xPosition, float yPosition,float zPosition):
 					ObstaclePosition({xPosition,yPosition,zPosition}){}
+
+ObstaclePosition3D::ObstaclePosition3D(const std::vector<float>& positions)
+							:ObstaclePosition(positions){
+							
+	if(positions.size() != 3){
+	
+		throw new ObstaclePositionError("position 3D array must be of length 3"); 
+	}						
+								
+}
 
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position){
 	position.print(os);
@@ -178,6 +162,12 @@ bool ObstaclePosition3D::operator!=(const ObstaclePosition3D& otherPosition)cons
 	return ObstaclePosition::operator!=(otherPosition); 
 }
 
+ObstaclePosition3D ObstaclePosition3D::operator+(const ObstacleDimension3D& dimension)
+										const{
+										
+	return ObstaclePosition::operator+(dimension); 
+										
+}
 
 Obstacle2D::Obstacle2D(const ObstaclePosition2D& position,const ObstacleDimension2D& dimension):Obstacle(position,dimension){}
 
@@ -268,3 +258,5 @@ DiscreteInterval2D& ObstacleDiscretizer2D::getInterval(){
 
 	return this->interval;
 }
+
+

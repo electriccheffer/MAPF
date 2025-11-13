@@ -12,4 +12,14 @@ class ObstacleDimensionError : public std::runtime_error{
 		std::string message; 
 
 }; 
+
+class ObstaclePositionError : public std::runtime_error{
+
+	public: 
+		explicit ObstaclePositionError(const std::string& message):
+		std::runtime_error("Obstacle Position Error:" + message),message(message){}
+	private: 
+		std::string message; 
+
+};
 #endif
