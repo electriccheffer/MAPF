@@ -30,7 +30,7 @@ TEST(TestDimension,TestInvalidDimensionNegative){
 TEST(TestDimension,TestInvalidDimensionZero){
 
 	float height = 0.00; 
-	float width = .25; 
+	float width = 0.00; 
 	EXPECT_THROW({ObstacleDimension2D dimension(height,width);},ObstacleDimensionError);
 }
 

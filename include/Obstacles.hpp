@@ -2,6 +2,9 @@
 #define OBSTACLES_HPP
 #include <vector>
 #include <iostream>
+#include <cmath>
+
+static constexpr float EPS = 1e-6f;
 
 class ObstacleDimension{
 
@@ -71,7 +74,7 @@ class ObstaclePosition{
 		unsigned int otherPositionVectorSize = otherPositionVector.size(); 
 
 		for(unsigned int index = 0 ; index < otherPositionVectorSize ; index++ ){
-			if(otherPositionVector[index] != this->positionCoordinates[index]){
+			if(std::fabs(this->positionCoordinates[index]-otherPositionVector[index]) > EPS){
 				return false; 
 			}
 		}
@@ -240,7 +243,10 @@ class ObstacleDiscretizer2D{
 	protected:
 		Obstacle2D& obstacle; 
 		DiscreteInterval2D& interval; 
-
+		std::vector<ObstaclePosition2D> makeEdge(ObstaclePosition2D& start,
+							ObstacleDimension2D& unit,	
+							ObstaclePosition2D& endPoint); 
+		
 
 }; 
 

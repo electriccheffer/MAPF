@@ -1,5 +1,7 @@
 #include "../../include/Obstacles.hpp"
 #include "../../include/errors/ObstacleErrors.hpp"
+#include <cmath>
+#include <algorithm>
 
 ObstacleDimension::ObstacleDimension(const std::vector<float>& dimensions):dimensions(dimensions){}
 
@@ -49,11 +51,17 @@ void ObstacleDimension::print(std::ostream& os)const{
 ObstacleDimension2D::ObstacleDimension2D(float height, float width):
 					ObstacleDimension({height,width}){
 
-	if(height <=  0.00 || width <= 0.00){
+	if(height ==  0.00 && width == 0.00){
 	
 		throw ObstacleDimensionError("dimensions may not be zero or negative");
 	
 	}	
+
+	if(height <  0.00 || width < 0.00){
+	
+		throw ObstacleDimensionError("dimensions may not be zero or negative");
+	
+	}
 }
 
 bool ObstacleDimension2D::operator==(const ObstacleDimension2D& otherDimension)const{
@@ -260,3 +268,35 @@ DiscreteInterval2D& ObstacleDiscretizer2D::getInterval(){
 }
 
 
+std::vector<ObstaclePosition2D> ObstacleDiscretizer2D::makeEdge(ObstaclePosition2D& start,
+							ObstacleDimension2D& unit,
+							ObstaclePosition2D& endPoint){
+	
+    std::vector<ObstaclePosition2D> positions;
+
+    float sx = start.getPosition()[0];
+    float sy = start.getPosition()[1];
+    float ex = endPoint.getPosition()[0];
+    float ey = endPoint.getPosition()[1];
+
+    float ux = unit.getDimension()[0];
+    float uy = unit.getDimension()[1];
+
+    // Compute the number of steps
+    // Only one dimension will have nonzero movement in your design
+    int steps = 0;
+
+    if (std::fabs(ux) > 1e-12f) {
+        steps = std::round((ex - sx) / ux);
+    } else {
+        steps = std::round((ey - sy) / uy);
+    }
+
+    // i = 1..steps-1 gives intermediate points (0.01 ... 0.09)
+    for (int i = 1; i < steps; ++i) {
+        positions.emplace_back(sx + ux * i, sy + uy * i);
+    }
+    int len = positions.size(); 
+    	
+    return positions;	
+}
