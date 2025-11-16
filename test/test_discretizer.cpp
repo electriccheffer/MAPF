@@ -150,3 +150,29 @@ TEST(TestDiscritizer,makeEdgeHorizontalVertical){
 	
 	EXPECT_EQ(expected,result); 
 }
+
+TEST(TestDiscritizer,makeEdgeVerticalHorizontal){
+
+	float positionX = 0.0; 
+	float positionY = 0.10; 
+	float height = .10; 
+	float width = .10;
+       	float space  = .01; 	
+	float unitHeight = 0.0; 
+	float unitWidth = 0.01; 
+	ObstaclePosition2D position(positionX,positionY); 
+	ObstacleDimension2D dimension(height,width);
+	Obstacle2D obstacle(position,dimension); 
+	DiscreteInterval2D interval(space,dimension); 
+	ObstacleDimension2D unitDirection = {unitWidth,unitHeight}; 
+	ObstacleDiscretizer2DSubclass discretizer(obstacle,interval);
+	ObstaclePosition2D endBoundary(width,height); 
+	std::vector<ObstaclePosition2D> result = discretizer.makeEdgeTestAccess(position,unitDirection,endBoundary); 
+	std::vector<ObstaclePosition2D> expected = {ObstaclePosition2D(0.01,0.10),
+						   ObstaclePosition2D(0.02,0.10),ObstaclePosition2D(0.03,0.10),
+						   ObstaclePosition2D(0.04,0.10),ObstaclePosition2D(0.05,0.10),
+						   ObstaclePosition2D(0.06,0.10),ObstaclePosition2D(0.07,0.10),
+						   ObstaclePosition2D(0.08,0.10),ObstaclePosition2D(0.09,0.10)}; 
+	
+	EXPECT_EQ(expected,result); 
+}
