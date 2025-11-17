@@ -282,8 +282,6 @@ std::vector<ObstaclePosition2D> ObstacleDiscretizer2D::makeEdge(ObstaclePosition
     float ux = unit.getDimension()[0];
     float uy = unit.getDimension()[1];
 
-    // Compute the number of steps
-    // Only one dimension will have nonzero movement in your design
     int steps = 0;
 
     if (std::fabs(ux) > 1e-12f) {
@@ -292,11 +290,73 @@ std::vector<ObstaclePosition2D> ObstacleDiscretizer2D::makeEdge(ObstaclePosition
         steps = std::round((ey - sy) / uy);
     }
 
-    // i = 1..steps-1 gives intermediate points (0.01 ... 0.09)
     for (int i = 1; i < steps; ++i) {
         positions.emplace_back(sx + ux * i, sy + uy * i);
     }
     int len = positions.size(); 
     	
     return positions;	
+
+}
+
+
+std::vector<ObstaclePosition2D> ObstacleDiscretizer2D::getDiscreteObject(){
+
+	std::vector<ObstaclePosition2D> discretePoints; 
+	
+	ObstaclePosition2D startPosition = this->obstacle.getPosition(); 
+	
+	ObstacleDimension2D obstacleDimension = this->obstacle.getDimension(); 
+	ObstacleDimension2D robotDimension = this->interval.getDimension(); 
+	ObstacleDimension2D horizontalMaxDimension(obstacleDimension.getDimension()[0]
+						   + robotDimension.getDimension()[0] ,
+						   0.0); 	
+	ObstacleDimension2D verticalMaxDimension(0.0 ,obstacleDimension.getDimension()[1]
+						       + robotDimension.getDimension()[1]);
+
+	ObstacleDimension2D horizontalUnit(this->interval.getSpace(),0.0); 
+	ObstacleDimension2D verticalUnit(0.0,this->interval.getSpace());
+
+	ObstaclePosition2D southEastMax = (startPosition + horizontalMaxDimension); 	
+	std::cout << "SOUTHEAST MAX: " << southEastMax << std::endl; 
+	ObstaclePosition2D northEastMax = (southEastMax + verticalMaxDimension);
+	std::cout << "NORTHEAST MAX: " << northEastMax << std::endl; 
+	ObstaclePosition2D northWestMax = (startPosition + verticalMaxDimension); 
+	std::cout << "NORTHWEST MAX: " << northWestMax << std::endl; 
+	
+	//calculate bottom
+	discretePoints.push_back(startPosition); 
+	std::vector<ObstaclePosition2D> horizontalPostions = this->makeEdge(startPosition,
+							     horizontalUnit, southEastMax);
+	discretePoints.insert(discretePoints.end(),
+				horizontalPostions.begin(),
+				horizontalPostions.end()); 
+	//calculate horizontal-vertical
+	discretePoints.push_back(southEastMax);
+	std::vector<ObstaclePosition2D> horizontalVerticalPostions = makeEdge(southEastMax,
+							     verticalUnit, northEastMax);
+	discretePoints.insert(discretePoints.end(),
+				horizontalVerticalPostions.begin(),
+				horizontalVerticalPostions.end()); 
+
+		
+	//calculate vertical
+	discretePoints.push_back(northEastMax);
+	std::vector<ObstaclePosition2D> verticalPostions = makeEdge(startPosition,
+							     verticalUnit, northWestMax);
+	discretePoints.insert(discretePoints.end(),
+				verticalPostions.begin(),
+				verticalPostions.end()); 
+
+	discretePoints.push_back(northWestMax);
+
+	//calcualte vertical-horizontal
+	std::vector<ObstaclePosition2D> verticalHorizontalPostions = makeEdge(northWestMax,
+							     horizontalUnit, northEastMax);
+	discretePoints.insert(discretePoints.end(),
+				verticalHorizontalPostions.begin(),
+				verticalHorizontalPostions.end()); 
+
+	return discretePoints; 
+		
 }

@@ -240,6 +240,7 @@ class ObstacleDiscretizer2D{
 		ObstacleDiscretizer2D(Obstacle2D& obstacle,DiscreteInterval2D& interval);
 		Obstacle2D& getObstacle(); 
 		DiscreteInterval2D& getInterval(); 
+		std::vector<ObstaclePosition2D> getDiscreteObject(); 
 	protected:
 		Obstacle2D& obstacle; 
 		DiscreteInterval2D& interval; 

@@ -53,24 +53,34 @@ std::vector<ObstaclePosition2D> descretePointsFactory(){
 		ObstaclePosition2D(.04,0.0),ObstaclePosition2D(.05,0.0),
 		ObstaclePosition2D(.06,0.0),ObstaclePosition2D(.07,0.0),
 		ObstaclePosition2D(.08,0.0),ObstaclePosition2D(.09,0.0),
-		ObstaclePosition2D(.1,0.0),
-		ObstaclePosition2D(.1,0.01),
-		ObstaclePosition2D(.1,0.02),ObstaclePosition2D(.1,0.03),
-		ObstaclePosition2D(.1,0.04),ObstaclePosition2D(.1,0.05),
-		ObstaclePosition2D(.1,0.06),ObstaclePosition2D(.1,0.07),
-		ObstaclePosition2D(.1,0.08),ObstaclePosition2D(.1,0.09),
-		ObstaclePosition2D(.1,.1),
+		ObstaclePosition2D(.10,0.0),ObstaclePosition2D(.11,0.0),
+		ObstaclePosition2D(.12,0.0),ObstaclePosition2D(.13,0.0),
+		ObstaclePosition2D(.14,0.0),
+		ObstaclePosition2D(.15,0.0),
+		ObstaclePosition2D(.15,0.01),
+		ObstaclePosition2D(.15,0.02),ObstaclePosition2D(.15,0.03),
+		ObstaclePosition2D(.15,0.04),ObstaclePosition2D(.15,0.05),
+		ObstaclePosition2D(.15,0.06),ObstaclePosition2D(.15,0.07),
+		ObstaclePosition2D(.15,0.08),ObstaclePosition2D(.15,0.09),
+		ObstaclePosition2D(.15,.1),ObstaclePosition2D(.15,.11),
+		ObstaclePosition2D(.15,.12),ObstaclePosition2D(.15,.13),
+		ObstaclePosition2D(.15,.14),
+		ObstaclePosition2D(.15,.15),
 		ObstaclePosition2D(0.0,.01),ObstaclePosition2D(0.0,.02),
 		ObstaclePosition2D(0.0,.03),ObstaclePosition2D(0.0,.04),
 		ObstaclePosition2D(0.0,.05),ObstaclePosition2D(0.0,.06),
 		ObstaclePosition2D(0.0,.07),ObstaclePosition2D(0.0,.08),
-		ObstaclePosition2D(0.0,.09),
-		ObstaclePosition2D(0.0,0.1),
-		ObstaclePosition2D(.01,.1),ObstaclePosition2D(.02,.1),
-		ObstaclePosition2D(.03,.1),ObstaclePosition2D(.04,.1),
-		ObstaclePosition2D(.05,.1),ObstaclePosition2D(.06,.1),
-		ObstaclePosition2D(.07,.1),ObstaclePosition2D(.08,.1),
-		ObstaclePosition2D(.09,.1)
+		ObstaclePosition2D(0.0,.09),ObstaclePosition2D(0.0,0.1),
+		ObstaclePosition2D(0.0,.11),ObstaclePosition2D(0.0,0.12),
+		ObstaclePosition2D(0.0,.13),ObstaclePosition2D(0.0,0.14),
+		ObstaclePosition2D(0.0,.15),
+		ObstaclePosition2D(.01,.15),ObstaclePosition2D(.02,.15),
+		ObstaclePosition2D(.03,.15),ObstaclePosition2D(.04,.15),
+		ObstaclePosition2D(.05,.15),ObstaclePosition2D(.06,.15),
+		ObstaclePosition2D(.07,.15),ObstaclePosition2D(.08,.15),
+		ObstaclePosition2D(.09,.15),ObstaclePosition2D(.1,.15),
+		ObstaclePosition2D(.11,.15),ObstaclePosition2D(.12,.15),
+		ObstaclePosition2D(.13,.15),ObstaclePosition2D(.14,.15),
 	}; 
 
 	return points;  
@@ -175,4 +185,33 @@ TEST(TestDiscritizer,makeEdgeVerticalHorizontal){
 						   ObstaclePosition2D(0.08,0.10),ObstaclePosition2D(0.09,0.10)}; 
 	
 	EXPECT_EQ(expected,result); 
+}
+
+TEST(TestDiscritizer,getDiscreteObject){
+
+	float positionX = 0.0; 
+	float positionY = 0.0; 
+	
+	float height = .10; 
+	float width = .10;
+	
+	float robotWidth = .05; 
+	float robotHeight = .05; 
+       	
+	float space  = .01; 	
+	
+	ObstaclePosition2D position(positionX,positionY); 
+	ObstacleDimension2D dimension(width,height);
+	
+	ObstacleDimension2D robotDimension(robotWidth,robotHeight); 
+	
+	Obstacle2D obstacle(position,dimension); 
+	
+	DiscreteInterval2D interval(space,robotDimension); 
+	
+	ObstacleDiscretizer2DSubclass discretizer(obstacle,interval);
+	
+	std::vector<ObstaclePosition2D> result = discretizer.getDiscreteObject();
+	std::vector<ObstaclePosition2D> expected = descretePointsFactory(); 
+	EXPECT_EQ(result,expected);
 }
