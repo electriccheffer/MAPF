@@ -1,1 +1,4 @@
--Obstacle Discretizer
+-Implement Map Objects
+-Implement AStar Algorithm
+-Implement ReservationTable
+-Move to ROS
