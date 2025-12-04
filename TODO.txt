@@ -1,2 +1,1 @@
--Implement Heuristic StraightLineDistance Object
 -Implement AStar Algorithm
