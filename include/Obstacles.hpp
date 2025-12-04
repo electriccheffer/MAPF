@@ -252,6 +252,23 @@ class ObstacleDiscretizer2D{
 }; 
 
 
+class Heuristic {
+
+	public:
+		
+	protected:
+
+};
+
+class SLDistanceHeuristic{
+
+	public:
+	
+	protected: 
+
+};
+
+
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position);
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position);
 std::ostream& operator<<(std::ostream& os,const ObstacleDimension2D& dimension);
