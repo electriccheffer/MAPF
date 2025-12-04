@@ -360,3 +360,18 @@ std::vector<ObstaclePosition2D> ObstacleDiscretizer2D::getDiscreteObject(){
 	return discretePoints; 
 		
 }
+
+SLDistanceHeuristic2D::SLDistanceHeuristic2D(ObstaclePosition2D& position, 
+					ObstaclePosition2D& otherPosition):
+					SLDistanceHeuristic<ObstaclePosition2D>
+							(position,otherPosition){
+	
+
+}
+
+SLDistanceHeuristic3D::SLDistanceHeuristic3D(ObstaclePosition3D& position, 
+					ObstaclePosition3D& otherPosition):
+						SLDistanceHeuristic(position,otherPosition){
+	
+
+}

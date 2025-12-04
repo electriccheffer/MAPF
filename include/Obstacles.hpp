@@ -251,23 +251,60 @@ class ObstacleDiscretizer2D{
 
 }; 
 
-
+template<typename T>
 class Heuristic {
 
 	public:
-		
+		virtual T calculate() const = 0;  
 	protected:
 
 };
-
-class SLDistanceHeuristic{
+template<typename PositionType>
+class SLDistanceHeuristic:public Heuristic<float>{
 
 	public:
+		SLDistanceHeuristic(PositionType& position,PositionType& otherPosition):
+					position(position),otherPosition(otherPosition){} 	
+		float calculate()const override{
 	
-	protected: 
+			std::vector<float> positionList = this->position.getPosition(); 
+			std::vector<float> otherPositionList = 
+				this->otherPosition.getPosition();
+			float distance = 0.0; 
+			int length = positionList.size(); 
+			for(int index = 0 ; index < length ;index++){
+				
+				float difference = positionList[index] - 
+						otherPositionList[index];
+				float squaredDifference = difference * difference; 
+				distance += squaredDifference; 
+			}	
+			distance = std::sqrt(distance);
 
+			return distance; 
+		} 
+	protected: 
+		PositionType& position; 
+		PositionType& otherPosition; 
 };
 
+class SLDistanceHeuristic2D:public SLDistanceHeuristic<ObstaclePosition2D>{
+
+	public: 
+		SLDistanceHeuristic2D(ObstaclePosition2D& position, 
+					ObstaclePosition2D& otherPosition); 
+	protected:
+
+}; 
+
+class SLDistanceHeuristic3D:public SLDistanceHeuristic<ObstaclePosition3D>{
+	
+	public: 
+		SLDistanceHeuristic3D(ObstaclePosition3D& position, 
+					ObstaclePosition3D& otherPosition); 
+	protected:
+
+}; 
 
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition2D& position);
 std::ostream& operator<<(std::ostream& os,const ObstaclePosition3D& position);
