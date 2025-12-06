@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.15)
 project(MAPF VERSION 0.1
 	     DESCRIPTION "Multi-Agent Pathfinding")
 
-add_library(mapf_lib source/lib/Obstacles.cpp)
+add_library(mapf_lib source/lib/Obstacles.cpp source/lib/Map.cpp)
+
 target_include_directories(mapf_lib PUBLIC include)
 
 include(CTest)
@@ -18,6 +19,8 @@ add_executable(test_discretizer test/test_discretizer.cpp)
 add_executable(test_discrete_interval test/test_discrete_interval.cpp)
 add_executable(test_subclasses test/testSubclasses/ObstaclesTestSubclasses.cpp)
 add_executable(test_aStar test/test_aStar.cpp)
+add_executable(test_map_subclasses test/testSubclasses/MapTestSubclasses.cpp)
+add_executable(test_mapData test/test_mapData.cpp)
 
 target_link_libraries(test_trivial PRIVATE GTest::gtest_main mapf_lib pthread)
 target_link_libraries(test_dimension PRIVATE GTest::gtest_main mapf_lib pthread)
@@ -27,6 +30,8 @@ target_link_libraries(test_discretizer PRIVATE GTest::gtest_main mapf_lib pthrea
 target_link_libraries( test_discrete_interval PRIVATE GTest::gtest_main mapf_lib pthread)
 target_link_libraries(test_subclasses PRIVATE GTest::gtest_main mapf_lib pthread )
 target_link_libraries(test_aStar PRIVATE GTest::gtest_main mapf_lib pthread )
+target_link_libraries(test_mapData PRIVATE GTest::gtest_main mapf_lib pthread )
+target_link_libraries(test_map_subclasses PRIVATE GTest::gtest_main mapf_lib pthread )
 
 include(GoogleTest)
 gtest_discover_tests(test_trivial)
@@ -36,3 +41,4 @@ gtest_discover_tests(test_obstacle)
 gtest_discover_tests(test_discrete_interval)
 gtest_discover_tests(test_discretizer)
 gtest_discover_tests(test_aStar)
+gtest_discover_tests(test_mapData)

@@ -74,7 +74,8 @@ class ObstaclePosition{
 		unsigned int otherPositionVectorSize = otherPositionVector.size(); 
 
 		for(unsigned int index = 0 ; index < otherPositionVectorSize ; index++ ){
-			if(std::fabs(this->positionCoordinates[index]-otherPositionVector[index]) > EPS){
+			if(std::fabs(this->positionCoordinates[index]-
+						otherPositionVector[index]) > EPS){
 				return false; 
 			}
 		}
