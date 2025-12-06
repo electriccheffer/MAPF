@@ -10,5 +10,8 @@ class TestMapTuple2D:public MapTuple2D{
 		
 			return this->lowerBound(); 		
 		}			
-		
+		long long getHash()const{
+			
+			return MapTuple2D::getHash(); 
+		}		
 };

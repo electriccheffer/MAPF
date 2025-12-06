@@ -58,3 +58,35 @@ TEST(TestMapTuple,TestMapTuple2DHashID){
 	long long expectedHash = 1572906; 
 	long long hashResult = mapTuple.getHash(); 
 }
+
+TEST(TestMapTuple,TestMapTuple2DHashIDNegative){
+
+	float xPosition = -2.4; 
+	float yPosition = 4.2; 
+	float spaceInterval = .1; 
+	float height = spaceInterval; 
+	float width = spaceInterval;	
+	ObstacleDimension2D dimension(height,width);
+	DiscreteInterval2D interval(spaceInterval,dimension); 	
+	ObstaclePosition2D position(xPosition,yPosition); 
+	MapTuple2D mapTuple(position,interval);
+	long long expectedHash = -1572822; 
+	long long hashResult = mapTuple.getHash(); 
+}
+
+TEST(TestMapData,RetrievePositionTrue){
+
+	float xPosition = 2.4; 
+	float yPosition = 4.2; 
+	float spaceInterval = .1; 
+	float height = spaceInterval; 
+	float width = spaceInterval;	
+	ObstacleDimension2D dimension(height,width);
+	DiscreteInterval2D interval(spaceInterval,dimension); 	
+	ObstaclePosition2D position(xPosition,yPosition); 
+	MapData<ObstaclePosition2D,DiscreteInterval2D,MapTuple2D> mapData(interval); 
+	mapData.add(position);
+      	bool inMap = mapData.get(position); 
+	EXPECT_TRUE(inMap); 
+
+}
