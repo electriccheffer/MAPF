@@ -10,5 +10,5 @@ class TestMapTuple2D:public MapTuple2D{
 		
 			return this->lowerBound(); 		
 		}			
-
+		
 };
