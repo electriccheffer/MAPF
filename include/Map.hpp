@@ -18,7 +18,7 @@ class MapTuple{
 			int length = obstaclePositions.size(); 
 			for(int index = 0 ; index < length ; index++){
 			
-				float truncatedDimension = std::floor(
+				float truncatedDimension = std::trunc(
 						obstaclePositions[index]/space) * space; 
 				truncatedPositions.push_back(truncatedDimension);	
 			}
