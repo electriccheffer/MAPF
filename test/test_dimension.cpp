@@ -79,3 +79,13 @@ TEST(TestDimension,TestNonEqualityFalse){
 	ObstacleDimension2D otherDimension(height,width); 
 	EXPECT_FALSE((dimension!=otherDimension));
 }
+
+TEST(TestDimension,TestBadNumber){
+
+	float height = .1; 
+	float width = .1; 	
+	ObstacleDimension2D dimension(height,width);
+	ObstacleDimension2D otherDimension(height,width); 
+	EXPECT_EQ(dimension,otherDimension);
+
+}
